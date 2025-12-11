@@ -16,7 +16,7 @@ import { Plus, Minus, RotateCcw } from "lucide-react";
 // Magnifier constants
 const MAGNIFIER_SIZE = 180;
 const MAGNIFIER_RADIUS = MAGNIFIER_SIZE / 2;
-const MAGNIFIER_ZOOM = 2.0; // Magnification strength
+const MAGNIFIER_ZOOM = 2.0;
 
 export default function ZoomableMap() {
   const [hovered, setHovered] = useState(false);
@@ -24,7 +24,6 @@ export default function ZoomableMap() {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Store full image dimensions (important for sharp magnifier)
   const [imgDims, setImgDims] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -35,7 +34,6 @@ export default function ZoomableMap() {
     };
   }, []);
 
-  // Cursor position relative to map container
   const handleMouseMove = useCallback(
     (e: ReactMouseEvent<HTMLDivElement>) => {
       const container = containerRef.current;
@@ -57,7 +55,8 @@ export default function ZoomableMap() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="
-        relative w-full h-full rounded-3xl overflow-hidden
+        relative w-full h-full
+        overflow-hidden
         shadow-[0_25px_70px_-20px_rgba(0,0,0,0.55)]
         bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900
         select-none
@@ -72,30 +71,18 @@ export default function ZoomableMap() {
         doubleClick={{ disabled: true }}
       >
         {(wrapper: any) => {
-          const { zoomIn, zoomOut, resetTransform, setTransform, state } =
-            wrapper;
+          const { zoomIn, zoomOut, resetTransform, state } = wrapper;
 
           const scale: number = state?.scale ?? 1;
           const posX: number = state?.positionX ?? 0;
           const posY: number = state?.positionY ?? 0;
 
-          // Zoom main map *into the cursor*
-          const zoomIntoCursor = () => {
-            const newScale = Math.min(scale + 1, 8);
-            const dx = cursor.x * (newScale - scale);
-            const dy = cursor.y * (newScale - scale);
-            setTransform(posX - dx, posY - dy, newScale, 180);
-          };
-
           return (
             <>
-              {/* 🔍 Magnifier (True HD zoom) */}
+              {/* 🔍 Magnifier (HD zoom preview) */}
               {hovered && imgDims.width > 0 && (
                 <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    zoomIntoCursor();
-                  }}
+                  onClick={(e) => e.stopPropagation()} // ⛔ no zoom on click
                   className="
                     absolute z-30 rounded-full overflow-hidden pointer-events-auto
                     border border-white/40 shadow-2xl
@@ -113,7 +100,6 @@ export default function ZoomableMap() {
                     style={{
                       width: imgDims.width,
                       height: imgDims.height,
-
                       transform: `
                         translate(
                           ${MAGNIFIER_RADIUS -
@@ -123,7 +109,6 @@ export default function ZoomableMap() {
                         )
                         scale(${scale * MAGNIFIER_ZOOM})
                       `,
-
                       transformOrigin: "top left",
                       willChange: "transform",
                     }}
@@ -140,13 +125,16 @@ export default function ZoomableMap() {
                 </div>
               )}
 
-              {/* Main Map */}
-              <TransformComponent>
+              {/* 🗺 Main Map Always Fits Container */}
+              <TransformComponent
+                wrapperClass="w-full h-full"
+                contentClass="w-full h-full"
+              >
                 <img
                   src="/images/thai1.jpg"
                   alt="Map"
                   draggable={false}
-                  className="w-full h-auto pointer-events-none"
+                  className="w-full h-full object-cover pointer-events-none select-none"
                 />
               </TransformComponent>
 
@@ -158,31 +146,10 @@ export default function ZoomableMap() {
                   p-3 shadow-xl
                 "
               >
-                {/* Zoom In */}
-                <button
-                  onClick={zoomIn}
-                  className="
-                    flex items-center justify-center w-10 h-10
-                    bg-white/20 hover:bg-white/30 text-white rounded-lg
-                    transition-all
-                  "
-                >
-                  <Plus size={20} />
-                </button>
+             
+               
 
-                {/* Zoom Out */}
-                <button
-                  onClick={zoomOut}
-                  className="
-                    flex items-center justify-center w-10 h-10
-                    bg-white/20 hover:bg-white/30 text-white rounded-lg
-                    transition-all
-                  "
-                >
-                  <Minus size={20} />
-                </button>
-
-                {/* RESET BUTTON */}
+                {/* Reset */}
                 <button
                   onClick={() => resetTransform()}
                   className="

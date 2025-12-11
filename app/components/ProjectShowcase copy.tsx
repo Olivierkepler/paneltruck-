@@ -1,6 +1,6 @@
 "use client";
 
-import ZoomableMap from "./ZoomableMap";
+import ZoomableMap from "./maps/images/ZoomableMap";
 import { motion } from "framer-motion";
 
 export default function ProjectShowcase() {
