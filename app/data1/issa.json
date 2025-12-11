@@ -1,0 +1,34 @@
+{
+    "header": {
+      "journalTitle": "Boston Literary Map Journal",
+      "mainTitle": "Communicator : L’Étranger",
+      "subtitle": "A digital exploration of communication, place, and distance through Albert Camus’ L’Étranger, designed as a modern companion to traditional literary scholarship."
+    },
+  
+    "themeSection": {
+      "title": "Team Theme",
+      "body": "Our theme explores the idea of the communicator as a bridge between unfamiliar worlds, inspired by L’Étranger and its tension between belonging and distance. Communication becomes a lens for examining how individuals translate emotion, culture, and identity across boundaries—sometimes successfully, sometimes incompletely. We focus on how messages shift when filtered through perspective, power, and place. By studying maps—both literal and metaphorical—we consider how people situate themselves in foreign environments and how miscommunication creates isolation, misunderstanding, or revelation. Our project shows that communication is not simply the exchange of words but a process of navigating unfamiliar terrains."
+    },
+  
+    "individualSection": {
+      "title": "Individual Focus",
+      "body": "For my section, I selected Albert Camus as my author and used a map of Oran, Algeria, where L’Étranger unfolds. The city becomes a silent communicator, shaping Meursault’s identity through its heat, architecture, and vast open spaces. My map highlights locations tied to emotional disconnection and social tension. By pairing geography with narrative, I show how the environment communicates meaning that Meursault himself refuses to articulate, reinforcing the theme of distance between self and society."
+    },
+  
+    "digitalVisionSection": {
+      "title": "Digital Project Vision",
+      "body": "Our digital project blends interactive maps, layered text, and subtle motion to create an immersive reading experience. Users navigate spaces tied to major narrative moments, clicking locations to reveal reflections, quotes, and commentary. The clean, restrained design echoes the quiet tension of L’Étranger. Rather than forcing a linear reading, the project invites exploration, allowing viewers to see how communication, perspective, and setting interact across the story’s geography—much like a reader tracing annotations in the margins of a library copy."
+    },
+  
+    "reflectionSection": {
+      "title": "Reflection on Digital Form",
+      "body": "Digital tools expand this project beyond what a traditional essay can accomplish. Instead of simply analyzing themes, users interact with them—zooming into moments, navigating emotional spaces, and visually experiencing connections between place and meaning. The map-based structure invites nonlinear thinking and discovery. Interactive elements communicate nuance that text alone might not, making the project more dynamic, intuitive, and engaging. Digital media transforms the work into a living system rather than a static explanation, while still honoring the rigor of literary analysis."
+    },
+  
+    "mapSection": {
+      "title": "Plate I — Interactive Map of Oran, Algeria",
+      "figureCaption": "figure 1. cartographic companion to L’Étranger",
+      "body": "This interactive map serves as a cartographic annotation of L’Étranger. By hovering and zooming, readers can explore the spatial context that surrounds Meursault’s story—streets, seafronts, and districts that quietly inform his isolation. The map functions as both reference and interpretation, inviting users to consider how place communicates alongside language."
+    }
+  }
+  
